@@ -1,5 +1,5 @@
-import clientPromise from "../mongodb";
 import { SaveSubscriptionReq, SaveSubscriptionResp } from "../pr-push-api-common/types";
+import clientPromise from "../user-management-server/mongodb";
 import { ApiResp } from "../user-management-server/user-management-common/apiRoutesCommon";
 import { SubscriptionDoc } from "./types";
 import webpush, { WebPushError } from 'web-push';
