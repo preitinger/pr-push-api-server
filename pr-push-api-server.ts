@@ -61,6 +61,8 @@ export const exampleExecuteSaveSubscription = (dbName: string, collectionName: s
 /**
  * more a documentation which function of webpush to use than a real
  * benefit because it just wraps webpush.sendNotification in the lib web-push.
+ * Depends also on the initializing call to webpush.setVapidDetails (see above)
+ * which depends on the env entry 'VAPID_KEYS'
  * @param subscription 
  * @param msg 
  * @returns 
