@@ -69,7 +69,9 @@ export const exampleExecuteSaveSubscription = (dbName: string, collectionName: s
  */
 export const sendPushMessage = async<Message> (subscription: webpush.PushSubscription, msg: Message): Promise<webpush.SendResult> => {
     try {
-        const sendRes: webpush.SendResult = await webpush.sendNotification(subscription, JSON.stringify(msg));
+        const stringifiedMsg = JSON.stringify(msg);
+        console.log('sendPushMessage: stringified msg', stringifiedMsg)
+        const sendRes: webpush.SendResult = await webpush.sendNotification(subscription, stringifiedMsg);
         return sendRes;
     } catch (reason) {
         const e = reason as webpush.WebPushError;
