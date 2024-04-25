@@ -2,7 +2,7 @@ import { SaveSubscriptionReq, SaveSubscriptionResp } from "../pr-push-api-common
 import clientPromise from "../user-management-server/mongodb";
 import { ApiResp } from "../user-management-server/user-management-common/apiRoutesCommon";
 import { SubscriptionDoc } from "./types";
-import webpush, { WebPushError } from 'web-push';
+// import webpush, { WebPushError } from 'web-push';
 
 
 
@@ -13,11 +13,11 @@ if (!vapidKeysStr) {
 
 const vapidKeys = JSON.parse(vapidKeysStr);
 
-webpush.setVapidDetails(
-    'mailto:peter.reitinger@gmail.com',
-    vapidKeys.publicKey,
-    vapidKeys.privateKey
-)
+// webpush.setVapidDetails(
+//     'mailto:peter.reitinger@gmail.com',
+//     vapidKeys.publicKey,
+//     vapidKeys.privateKey
+// )
 
 
 
@@ -58,23 +58,23 @@ export const exampleExecuteSaveSubscription = (dbName: string, collectionName: s
     }
 }
 
-/**
- * more a documentation which function of webpush to use than a real
- * benefit because it just wraps webpush.sendNotification in the lib web-push.
- * Depends also on the initializing call to webpush.setVapidDetails (see above)
- * which depends on the env entry 'VAPID_KEYS'
- * @param subscription 
- * @param msg 
- * @returns 
- */
-export const sendPushMessage = async<Message> (subscription: webpush.PushSubscription, msg: Message): Promise<webpush.SendResult> => {
-    try {
-        const stringifiedMsg = JSON.stringify(msg);
-        console.log('sendPushMessage: stringified msg', stringifiedMsg)
-        const sendRes: webpush.SendResult = await webpush.sendNotification(subscription, stringifiedMsg);
-        return sendRes;
-    } catch (reason) {
-        const e = reason as webpush.WebPushError;
-        throw e;
-    }
-}
+// /**
+//  * more a documentation which function of webpush to use than a real
+//  * benefit because it just wraps webpush.sendNotification in the lib web-push.
+//  * Depends also on the initializing call to webpush.setVapidDetails (see above)
+//  * which depends on the env entry 'VAPID_KEYS'
+//  * @param subscription 
+//  * @param msg 
+//  * @returns 
+//  */
+// export const sendPushMessage = async<Message> (subscription: webpush.PushSubscription, msg: Message): Promise<webpush.SendResult> => {
+//     try {
+//         const stringifiedMsg = JSON.stringify(msg);
+//         console.log('sendPushMessage: stringified msg', stringifiedMsg)
+//         const sendRes: webpush.SendResult = await webpush.sendNotification(subscription, stringifiedMsg);
+//         return sendRes;
+//     } catch (reason) {
+//         const e = reason as webpush.WebPushError;
+//         throw e;
+//     }
+// }
